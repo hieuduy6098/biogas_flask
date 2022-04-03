@@ -1,0 +1,466 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Bảng giám sát</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download report</a>
+    </div>
+    <!-- End of Page Heading -->
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Thông số điện -->
+        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+            <h1 class="h3 mb-0 text-gray-800 align-center">Thông số điện</h1>
+
+            <div class="row no-gutters align-items-center">
+                <!-- table1 -->
+                <div class="col  mr-2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Cảm biến</th>
+                        <th scope="col">Giá trị</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp hiệu dụng pha A: </div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01eleva"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp hiệu dụng pha B:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01elevb"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp hiệu dụng pha C:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01elevc"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp pha hiệu dụng trung bình:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01elevna"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp hiệu dụng dây AB:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elevab"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp hiệu dụng dây BC:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elevbc"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp hiệu dụng dây CA:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elevca"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điện áp dây hiệu dụng trung bình:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elevla"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Dòng điện hiệu dụng pha A:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eleia"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Dòng điện hiệu dụng pha B:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eleib"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Dòng điện hiệu dụng pha C:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eleic"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Dòng hiệu dụng trung bình:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eleiav"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tốc độ:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eles"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tần số:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elef"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng thời gian chạy:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eletop"></div>                       
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+            <h1 class="h3 mb-0 text-gray-800 align-center">Thông số điện</h1>
+
+            <div class="row no-gutters align-items-center">
+                <!-- table2 -->
+                <div class="col  mr-2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Cảm biến</th>
+                        <th scope="col">Giá trị</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Công suất pha A:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepwa"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Công suất pha B:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepwb"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Công suất pha C:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepwc"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng công suất:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepwt"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Hệ số công suất pha A:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepfa"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Hệ số công suất pha B:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepfb"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Hệ số công suất pha C:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepfc"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Hệ số công suất trung bình:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elepft"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng điện năng:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eleewh"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng năng lượng biểu kiến:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01eleevah"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">THD_Van/Vab:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elethdva"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">THD_Vbn/Vbc:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elethdvb"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">THD_Vcn/Vca:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elethdvc"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">THD_Ia:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elethdia"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">THD_Ib:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elethdib"></div>                       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">THD_Ic:</div>
+                        </td>
+                        <td>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01elethdic"></div>                       
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- environment -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <h1 class="h3 mb-0 text-gray-800 align-center">Thông số vận hành</h1>
+
+                <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Thời gian</th>
+                        <th scope="col">Giá trị</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Ngày-->
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ngày:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01daytb"></div>
+                        </td>
+                        </tr>
+                        <!-- Giờ bắt đầu-->
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Giờ bắt đầu:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01timetb"></div>
+                        </td>
+                        </tr>
+                        <!-- Thời gian chạy máy-->
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Thời gian chạy máy:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01op"></div>
+                        </td>
+                        </tr>
+                    </tbody>
+
+                    <thead>
+                        <tr>
+                        <th scope="col">Cảm biến</th>
+                        <th scope="col">Giá trị</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tốc độ đặt:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01opepidsp"></div>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tốc độ đầu ra pid:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01opepidout"></div>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Góc mở van biogas:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01opevpb"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Áp suất tank biogas:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01opepb"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tốc độ phản hồi:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="g01opevsfb"></div>
+                        </td>
+                        </tr>
+
+                    </tbody>
+                    </table>
+
+                </div>
+                </div>
+
+                <h1 class="h3 mb-0 text-gray-800 align-center">Thông số môi trường</h1>
+
+                <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Cảm biến</th>
+                        <th scope="col">Giá trị</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Nhiệt độ nước:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01envtw"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Áp suất dầu:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01envpo"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Oxygen:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01envo2"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">H2S:</div>
+                        </td>
+                        <td>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="g01envh2s"></div>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /.container-fluid -->
