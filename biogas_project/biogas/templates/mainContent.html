@@ -462,5 +462,95 @@
         </div>
 
     </div>
+
+
+    <!-- chart row -->
+    <div class="row row2">
+        <!-- real-time chart -->
+
+        <div class="col col1">
+            <div class="card">
+                <div class="card-body">
+                    <label for="listSensorHistory">Select sensor:</label>
+                    <select class="form-control" id="listSensorHistory" name="sensor">
+                        {% for i in listSensor %}
+                        <option>{{ i }}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="startTime">Start:</label>
+                    <input type="datetime-local" id="startTime" name="startTime">
+                    <label for="endTime">End:</label>
+                    <input type="datetime-local" id="endTime" name="endTime"><br>
+                    <button class="btn btn-primary" id="historySubmit">Load</button>
+                    <canvas id="{{ user.idMachine }}historyChart"></canvas>
+                    <script type="text/javascript">
+                        const labels1 = [1,2,3,4,5,6,7,8,9];
+
+                        const dataRealTime1 = {
+                            labels: labels1,
+                            datasets: [{
+                                label: "eles",
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [1,2,3,4,5,6,7,8,9],
+                        }]
+                        };
+
+                        const config1 = {
+                            type: 'line',
+                            data: dataRealTime1,
+                            options: {}
+                        };
+                        const myChart1 = new Chart(
+                            document.getElementById('{{ user.idMachine }}historyChart'),
+                            config1
+                        );
+                    </script>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- history chart -->
+        <div class="col col2">
+            <div class="card">
+                <div class="card-body">
+                    <label for="listSensorRealTime">Select sensor:</label>
+                    <select class="form-control" id="listSensorRealTime" name="sensor">
+                        {% for i in listSensor %}
+                        <option>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <button class="btn btn-primary" id="realTimeSubmit">Load</button>
+                    <canvas id="{{ user.idMachine }}realTimeChart"></canvas>
+                    <script type="text/javascript">
+                        const labels2 = [];
+
+                        const dataRealTime2 = {
+                            labels: labels2,
+                            datasets: [{
+                                label: "eles",
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [],
+                        }]
+                        };
+
+                        const config2 = {
+                            type: 'line',
+                            data: dataRealTime2,
+                            options: {}
+                        };
+                        const myChart2 = new Chart(
+                            document.getElementById('{{ user.idMachine }}realTimeChart'),
+                            config2
+                        );
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- /.container-fluid -->

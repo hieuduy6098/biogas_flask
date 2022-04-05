@@ -82,7 +82,7 @@ def inserUser():
 
 if __name__ == '__main__':
     #db.create_all()
-    inserUser()
+    #inserUser()
     '''
     u1 = user(idMachine='g01', userName='user1', passWord='machine1')
     u2 = user(idMachine='g02', userName='user2', passWord='machine2')

@@ -1,6 +1,7 @@
 from flask import session, request, render_template, url_for, redirect, jsonify
 from biogas import app
-from model import user as userDb
+from model import *
+from sqlalchemy.inspection import inspect
 
 app.secret_key='asdsdfsdfs13sdf_df%&'
 
@@ -9,13 +10,12 @@ def login():
     if request.method == 'POST':
         userNamePost = request.form['user']
         passWordPost = request.form['pswd']
-        if userDb.query.filter_by(userName=userNamePost).all():
-            if userDb.query.filter_by(passWord=passWordPost).all():
-                user = userDb.query.filter_by(passWord=passWordPost).all()
-
+        if user.query.filter_by(userName=userNamePost).all():
+            if user.query.filter_by(passWord=passWordPost).all():
+                userData = user.query.filter_by(passWord=passWordPost).all()
                 session['userName'] = request.form['user']
-                session['idMachine'] = user[0].idMachine
-                return redirect(url_for('index', idMachine = user[0].idMachine))
+                session['idMachine'] = userData[0].idMachine
+                return redirect(url_for('index', idMachine = userData[0].idMachine))
     return render_template('login.html')
 
 
@@ -29,14 +29,17 @@ def logout():
 def index(idMachine):
     try:
         if idMachine in session['idMachine']:
-            user = userDb.query.filter_by(idMachine=idMachine).first()
-            return render_template('index.html', user = user)
+            userData = user.query.filter_by(idMachine=idMachine).first()
+            listSensor=['eles','eleva','elevb','elevc','elevna','elevab','elevbc','elevca','elevla','eleia','eleib','eleic','eleiav','elepwa','elepwb','elepwc','elepwt','elepfa','elepfb','elepfc','elepft','elef','eleewh','leevah','eletop','ethdva','ethdvb','ethdvc','ethdia','ethdib','ethdic',
+                        'envtw','envpo','envo2','envh2s',
+                        'opete','opetb','opepidsp','opepidout','opevpb','opepb','opevsfb']
+            return render_template('index.html', user = userData, listSensor= listSensor)
     except:
         return redirect(url_for('login'))
 
 
-@app.route('/test', methods=['POST', 'GET'])
-def test():
+@app.route('/chart', methods=['POST', 'GET'])
+def chart():
     try:
         if request.method == "POST":
             data = request.get_json()

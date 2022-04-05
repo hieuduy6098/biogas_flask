@@ -6,7 +6,7 @@ client = new Paho.MQTT.Client("27.71.227.145", 8083, "web_" + parseInt(Math.rand
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 /*
-var options = {
+let options = {
   useSSL: true,
   userName: "dwwsgduh",
   password: "Vx99bs6ekT-4",
@@ -27,14 +27,14 @@ function onConnect() {
 
 //publish function
 function publish(location, typedata, time_begin, time_end) {
-  var element = {
+  let element = {
     "rpi":location,
     "param_id":typedata,
     "time_begin":time_begin, 
     "time_end":time_end
   };
   element = JSON.stringify(element);
-  var message = new Paho.MQTT.Message(element);               //publish message
+  let message = new Paho.MQTT.Message(element);               //publish message
     message.destinationName = "client_request/history";
     //message.destinationName = "client_request/hello";
     //message.destinationName = "test";
