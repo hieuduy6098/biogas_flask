@@ -43,8 +43,12 @@ def chart():
     try:
         if request.method == "POST":
             data = request.get_json()
-            print(data)
-            return jsonify({"id":1})
+            result = electrical.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
+            jsonData = {}
+            for object in result:
+                dictObject = object.__dict__
+                jsonData.update({dictObject['time']: dictObject[data['sensor']]})
+            return jsonify(jsonData)
     except:
         print("error process request")
 
