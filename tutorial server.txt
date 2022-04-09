@@ -1,0 +1,2 @@
+sudo chown $USER:webuser /opt/lampp/htdocs/
+sudo chmod 755 /opt/lampp/htdocs/
