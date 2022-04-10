@@ -1,0 +1,154 @@
+{% extends 'index.html' %}
+
+{% block mainContent %}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Bảng giám sát</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-4 col-md-4 mb-4 col1">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <h1 class="h3 mb-0 text-gray-800 align-center">Thông số</h1>
+
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">Trạng thái: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}status"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ngày:</div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}daytb"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Giờ bắt đầu:</div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}timetb"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Số giờ vận hành:</div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}op"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">Năng lượng: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}eleewh"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">Công suất:</div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}elepwt"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">điện áp:</div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}elevna"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">Dòng điện: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}eleiav"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">Tốc độ: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}eles"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">Tần số: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}elef"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">NHIỆT ĐỘ NƯỚC: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}envtw"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">ÁP SUẤT DẦU: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}envpo"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">OXYGEN: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}envo2"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="text-ms font-weight-bold text-primary text-uppercase mb-1">H2S: </div></td>
+                                        <td><div class="h5 mb-0 font-weight-bold text-gray-800" id="{{ user.idMachine }}envh2s"></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8 col-md-8 mb-8 col2">
+          <div class="row row1">
+              <div class="card" style="width: 100%;">
+                  <div class="card-body">
+                    <button class="btn btn-primary">Load</button>
+                    <canvas id="{{ user.idMachine }}dailyPower"></canvas>
+                    <script type="text/javascript">
+                        const labels1 = {{ timeDataChart }};
+
+                        const dataRealTime1 = {
+                            labels: labels1,
+                            datasets: [{
+                                label: "eles",
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: {{ valueDataChart }},
+                        }]
+                        };
+
+                        const config1 = {
+                            type: 'bar',
+                            data: dataRealTime1,
+                            options: {}
+                        };
+                        const myChart1 = new Chart(
+                            document.getElementById('{{ user.idMachine }}dailyPower'),
+                            config1
+                        );
+                    </script>
+                </div>
+              </div>
+          </div>
+          <hr class="sidebar-divider ">
+          <div class="row row2">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <button class="btn btn-primary">Load</button>
+                    <canvas id="{{ user.idMachine }}realTimeChart"></canvas>
+                    <script type="text/javascript">
+                        const labels2 = [];
+
+                        const dataRealTime2 = {
+                            labels: labels2,
+                            datasets: [{
+                                label: "eles",
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [],
+                        }]
+                        };
+
+                        const config2 = {
+                            type: 'line',
+                            data: dataRealTime2,
+                            options: {}
+                        };
+                        const myChart2 = new Chart(
+                            document.getElementById('{{ user.idMachine }}realTimeChart'),
+                            config2
+                        );
+                    </script>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+          <!-- Content col 1 -->
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
