@@ -52,6 +52,7 @@ $(document).ready(function(){
             data.value.forEach(function(element){
                 dataRealTime4.datasets[0].data.push(element);
             });
+            dataRealTime4.datasets[0].label = "Sản lượng điện theo ngày"
             //console.log(labels4);
             //console.log(dataRealTime4.datasets[0].data);
             myChart4.update();
@@ -81,6 +82,7 @@ $(document).ready(function(){
                 dataRealTime4.datasets[0].data.push(element);
             });
             config4.options.scales.x.title.text = "Tháng";
+            dataRealTime4.datasets[0].label = "Sản lượng điện theo tháng"
             //console.log(labels4);
             //console.log(dataRealTime4.datasets[0].data);
             myChart4.update();

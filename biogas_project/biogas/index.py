@@ -88,7 +88,12 @@ def chart():
     try:
         if request.method == "POST":
             data = request.get_json()
-            result = electrical.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
+            if data['sensor'][0:3] == 'ele':
+                result = electrical.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
+            elif data['sensor'][0:3] == 'env':
+                result = environment.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
+            elif data['sensor'][0:3] == 'ope':
+                result = environment.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
             jsonData = {}
             for object in result:
                 dictObject = object.__dict__

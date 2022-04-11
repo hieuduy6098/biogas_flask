@@ -11,7 +11,7 @@
     <!-- End of Page Heading -->
 
     <!-- Content Row -->
-    <div class="row">
+    <div class="row row1">
         <!-- Thông số điện -->
         <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -469,90 +469,87 @@
     <!-- chart row -->
     <div class="row row2">
         <!-- real-time chart -->
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+                <label for="listSensorHistory">Chọn cảm biến:</label>
+                <select class="form-control" id="listSensorHistory" name="sensor">
+                    {% for i in listSensor %}
+                    <option>{{ i }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="startTime">Thời gian bắt đầu:</label>
+                <input type="datetime-local" id="startTime" name="startTime"><br>
+                <label for="endTime">Thời gian kết thúc:</label>
+                <input type="datetime-local" id="endTime" name="endTime"><br>
+                <button class="btn btn-primary btn-sm" id="historySubmit">Tải lại</button>
+                <canvas id="{{ user.idMachine }}historyChart"></canvas>
+                <script type="text/javascript">
+                    const labels1 = [];
 
-        <div class="col col1">
-            <div class="card">
-                <div class="card-body">
-                    <label for="listSensorHistory">Chọn cảm biến:</label>
-                    <select class="form-control" id="listSensorHistory" name="sensor">
-                        {% for i in listSensor %}
-                        <option>{{ i }}</option>
-                        {% endfor %}
-                    </select><br>
-                    <label for="startTime">Thời gian bắt đầu:</label>
-                    <input type="datetime-local" id="startTime" name="startTime">
-                    <label for="endTime">Thời gian kết thúc:</label>
-                    <input type="datetime-local" id="endTime" name="endTime"><br>
-                    <button class="btn btn-primary" id="historySubmit">Tải lại</button>
-                    <canvas id="{{ user.idMachine }}historyChart"></canvas>
-                    <script type="text/javascript">
-                        const labels1 = [];
+                    const dataRealTime1 = {
+                        labels: labels1,
+                        datasets: [{
+                            label: "eles",
+                            backgroundColor: 'rgb(255, 0, 0)',
+                            borderColor: 'rgb(255, 0, 0)',
+                            data: [],
+                    }]
+                    };
 
-                        const dataRealTime1 = {
-                            labels: labels1,
-                            datasets: [{
-                                label: "eles",
-                                backgroundColor: 'rgb(255, 0, 0)',
-                                borderColor: 'rgb(255, 0, 0)',
-                                data: [],
-                        }]
-                        };
-
-                        const config1 = {
-                            type: 'line',
-                            data: dataRealTime1,
-                            options: {}
-                        };
-                        const myChart1 = new Chart(
-                            document.getElementById('{{ user.idMachine }}historyChart'),
-                            config1
-                        );
-                    </script>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- history chart -->
-        <div class="col col2">
-            <div class="card">
-                <div class="card-body">
-                    <label for="listSensorRealTime">Chọn cảm biến:</label>
-                    <select class="form-control" id="listSensorRealTime" name="sensor">
-                        {% for i in listSensor %}
-                        <option>{{ i }}</option>
-                        {% endfor %}
-                    </select>
-                    <br>
-                    <button class="btn btn-primary" id="realTimeSubmit">Tải lại</button>
-                    <canvas id="{{ user.idMachine }}realTimeChart"></canvas>
-                    <script type="text/javascript">
-                        const labels2 = [];
-
-                        const dataRealTime2 = {
-                            labels: labels2,
-                            datasets: [{
-                                label: "eles",
-                                backgroundColor: 'rgb(255, 0, 0)',
-                                borderColor: 'rgb(255, 0, 0)',
-                                data: [],
-                        }]
-                        };
-
-                        const config2 = {
-                            type: 'line',
-                            data: dataRealTime2,
-                            options: {}
-                        };
-                        const myChart2 = new Chart(
-                            document.getElementById('{{ user.idMachine }}realTimeChart'),
-                            config2
-                        );
-                    </script>
-                </div>
+                    const config1 = {
+                        type: 'line',
+                        data: dataRealTime1,
+                        options: {}
+                    };
+                    const myChart1 = new Chart(
+                        document.getElementById('{{ user.idMachine }}historyChart'),
+                        config1
+                    );
+                </script>
             </div>
         </div>
     </div>
+    <!-- chart row -->
+    <div class="row row3">
+        <!-- history chart -->
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+                <label for="listSensorRealTime">Chọn cảm biến:</label>
+                <select class="form-control" id="listSensorRealTime" name="sensor">
+                    {% for i in listSensor %}
+                    <option>{{ i }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <button class="btn btn-primary btn-sm" id="realTimeSubmit">Tải lại</button>
+                <canvas id="{{ user.idMachine }}realTimeChart"></canvas>
+                <script type="text/javascript">
+                    const labels2 = [];
+
+                    const dataRealTime2 = {
+                        labels: labels2,
+                        datasets: [{
+                            label: "eles",
+                            backgroundColor: 'rgb(255, 0, 0)',
+                            borderColor: 'rgb(255, 0, 0)',
+                            data: [],
+                    }]
+                    };
+
+                    const config2 = {
+                        type: 'line',
+                        data: dataRealTime2,
+                        options: {}
+                    };
+                    const myChart2 = new Chart(
+                        document.getElementById('{{ user.idMachine }}realTimeChart'),
+                        config2
+                    );
+                </script>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 <!-- /.container-fluid -->
