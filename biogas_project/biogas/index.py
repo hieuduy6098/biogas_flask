@@ -1,7 +1,7 @@
 from flask import session, request, render_template, url_for, redirect, jsonify
 from biogas import app
 from model import *
-from  processDataChart import getDataByIdDaily
+from  processDataChart import getDataByIdDaily, getDataByIdMonthly
 from datetime import datetime
 from sqlalchemy.inspection import inspect
 
@@ -43,11 +43,44 @@ def person(idMachine):
         if idMachine in session['idMachine']:
             nowMonth = datetime.now().month
             userData = user.query.filter_by(idMachine=idMachine).first()
-            timeDataChart, valueDataChart = getDataByIdDaily(idMachine, 'elepwt', nowMonth)
-            #print(nowMonth)
-            return render_template('person.html', user=userData, timeDataChart=timeDataChart,valueDataChart=valueDataChart)
+            timeDataChartPower, valueDataChartPower = getDataByIdDaily(idMachine, 'elepwt', nowMonth)
+            timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(idMachine, 'eleewh', nowMonth)
+
+            return render_template('person.html', user=userData,
+                                   timeDataChartPower=timeDataChartPower,valueDataChartPower=valueDataChartPower,
+                                   timeDataChartEnergy=timeDataChartEnergy, valueDataChartEnergy=valueDataChartEnergy)
     except:
         return redirect(url_for('login'))
+
+
+@app.route('/chartPerson', methods=['POST', 'GET'])
+def chartPerson():
+    try:
+        if request.method == "POST":
+            data = request.get_json()
+            if data['typeMessage']=='dailyEnergy':
+                timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(data['idMachine'], data['typeChart'], data['month'])
+                jsonData = {
+                    'time': timeDataChartEnergy,
+                    'value': valueDataChartEnergy,
+                }
+                return jsonify(jsonData)
+            elif data['typeMessage']=='monthlyEnergy':
+                timeDataChartEnergy, valueDataChartEnergy = getDataByIdMonthly(data['idMachine'], data['typeChart'], data['year'])
+                jsonData = {
+                    'time': timeDataChartEnergy,
+                    'value': valueDataChartEnergy,
+                }
+                return jsonify(jsonData)
+            elif data['typeMessage']=='reloadPower':
+                timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(data['idMachine'], data['typeChart'], data['month'])
+                jsonData = {
+                    'time': timeDataChartEnergy,
+                    'value': valueDataChartEnergy,
+                }
+                return jsonify(jsonData)
+    except:
+        print("error process request")
 
 
 @app.route('/chart', methods=['POST', 'GET'])

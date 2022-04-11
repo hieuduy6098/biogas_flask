@@ -21,8 +21,8 @@ $(document).ready(function(){
                 dataRealTime1.datasets[0].data.push(data[key]);
 
             });
-            console.log(labels1);
-            console.log(dataRealTime1.datasets[0].data);
+            //console.log(labels1);
+            //console.log(dataRealTime1.datasets[0].data);
             myChart1.update();
         })
     })

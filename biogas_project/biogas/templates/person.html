@@ -86,29 +86,48 @@
           <div class="row row1">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                    <button class="btn btn-primary">Load</button>
-                    <canvas id="{{ user.idMachine }}dailyPower"></canvas>
+                    <label for="selectMonthPower">Chọn tháng:</label>
+                    <input type="month" id="selectMonthPower" name="selectMonthPower">
+                    <button class="btn btn-primary btn-sm" id="reloadPower">Tải lại</button>
+                    <canvas id="{{ user.idMachine }}Power"></canvas>
                     <script type="text/javascript">
-                        const labels1 = {{ timeDataChart }};
+                        const labels3 = {{ timeDataChartPower }};
 
-                        const dataRealTime1 = {
-                            labels: labels1,
+                        const dataRealTime3 = {
+                            labels: labels3,
                             datasets: [{
-                                label: "eles",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: {{ valueDataChart }},
+                                label: "elepwt",
+                                backgroundColor: 'rgb(77, 93, 255)',
+                                borderColor: 'rgb(77, 93, 255)',
+                                data: {{ valueDataChartPower }},
                         }]
                         };
 
-                        const config1 = {
+                        const config3 = {
                             type: 'bar',
-                            data: dataRealTime1,
-                            options: {}
+                            data: dataRealTime3,
+                            options: {
+                                scales: {
+                                    y: {
+                                        display: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Công suất [kW]'
+                                        }
+                                    },
+                                    x: {
+                                        display: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Ngày'
+                                        }
+                                    },
+                                }
+                            },
                         };
-                        const myChart1 = new Chart(
-                            document.getElementById('{{ user.idMachine }}dailyPower'),
-                            config1
+                        const myChart3 = new Chart(
+                            document.getElementById('{{ user.idMachine }}Power'),
+                            config3
                         );
                     </script>
                 </div>
@@ -118,29 +137,50 @@
           <div class="row row2">
             <div class="card" style="width: 100%;">
                 <div class="card-body">
-                    <button class="btn btn-primary">Load</button>
-                    <canvas id="{{ user.idMachine }}realTimeChart"></canvas>
-                    <script type="text/javascript">
-                        const labels2 = [];
+                    <label for="selectMonthEnergy">Chọn tháng:</label>
+                    <input type="month" id="selectMonthEnergy" name="selectMonthEnergy">
 
-                        const dataRealTime2 = {
-                            labels: labels2,
+                    <button class="btn btn-primary btn-sm" id="dailyEnergyBtn">Ngày</button>
+                    <button class="btn btn-primary btn-sm" id="monthlyEnergyBtn">Tháng</button>
+                    <canvas id="{{ user.idMachine }}Energy"></canvas>
+                    <script type="text/javascript">
+                        const labels4 = {{ timeDataChartEnergy }};
+
+                        const dataRealTime4 = {
+                            labels: labels4,
                             datasets: [{
-                                label: "eles",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [],
+                                label: "eleewh",
+                                backgroundColor: 'rgb(77, 93, 255)',
+                                borderColor: 'rgb(77, 93, 255)',
+                                data: {{ valueDataChartEnergy }},
                         }]
                         };
 
-                        const config2 = {
-                            type: 'line',
-                            data: dataRealTime2,
-                            options: {}
+                        const config4 = {
+                            type: 'bar',
+                            data: dataRealTime4,
+                            options: {
+                                scales: {
+                                    y: {
+                                        display: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Điện năng [kWh]'
+                                        }
+                                    },
+                                    x: {
+                                        display: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Ngày'
+                                        }
+                                    },
+                                }
+                            },
                         };
-                        const myChart2 = new Chart(
-                            document.getElementById('{{ user.idMachine }}realTimeChart'),
-                            config2
+                        const myChart4 = new Chart(
+                            document.getElementById('{{ user.idMachine }}Energy'),
+                            config4
                         );
                     </script>
                 </div>

@@ -473,17 +473,17 @@
         <div class="col col1">
             <div class="card">
                 <div class="card-body">
-                    <label for="listSensorHistory">Select sensor:</label>
+                    <label for="listSensorHistory">Chọn cảm biến:</label>
                     <select class="form-control" id="listSensorHistory" name="sensor">
                         {% for i in listSensor %}
                         <option>{{ i }}</option>
                         {% endfor %}
                     </select><br>
-                    <label for="startTime">Start:</label>
+                    <label for="startTime">Thời gian bắt đầu:</label>
                     <input type="datetime-local" id="startTime" name="startTime">
-                    <label for="endTime">End:</label>
+                    <label for="endTime">Thời gian kết thúc:</label>
                     <input type="datetime-local" id="endTime" name="endTime"><br>
-                    <button class="btn btn-primary" id="historySubmit">Load</button>
+                    <button class="btn btn-primary" id="historySubmit">Tải lại</button>
                     <canvas id="{{ user.idMachine }}historyChart"></canvas>
                     <script type="text/javascript">
                         const labels1 = [];
@@ -492,8 +492,8 @@
                             labels: labels1,
                             datasets: [{
                                 label: "eles",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgb(255, 0, 0)',
+                                borderColor: 'rgb(255, 0, 0)',
                                 data: [],
                         }]
                         };
@@ -517,14 +517,14 @@
         <div class="col col2">
             <div class="card">
                 <div class="card-body">
-                    <label for="listSensorRealTime">Select sensor:</label>
+                    <label for="listSensorRealTime">Chọn cảm biến:</label>
                     <select class="form-control" id="listSensorRealTime" name="sensor">
                         {% for i in listSensor %}
                         <option>{{ i }}</option>
                         {% endfor %}
                     </select>
                     <br>
-                    <button class="btn btn-primary" id="realTimeSubmit">Load</button>
+                    <button class="btn btn-primary" id="realTimeSubmit">Tải lại</button>
                     <canvas id="{{ user.idMachine }}realTimeChart"></canvas>
                     <script type="text/javascript">
                         const labels2 = [];
@@ -533,8 +533,8 @@
                             labels: labels2,
                             datasets: [{
                                 label: "eles",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgb(255, 0, 0)',
+                                borderColor: 'rgb(255, 0, 0)',
                                 data: [],
                         }]
                         };

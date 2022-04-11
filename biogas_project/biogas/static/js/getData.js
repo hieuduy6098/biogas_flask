@@ -198,20 +198,27 @@ function getDataOperation(data, rpi) {
 
 let typeSensor = "eles";
 function getDataRealTimeChart(typeSensor, data, idMachine){
-    if (data.rpi == idMachine){
-        sensor = data.rpi + typeSensor;
-        data.data.forEach(function(element){
-            if (element.id == sensor){
-                time = (new Date(Number(data.time))).toLocaleTimeString();
-                //let dateTime = new Date((data.time)*1000);
-                //let time = dateTime.getHours()+":"+dateTime.getMinutes()+":"+dateTime.getSeconds()
-                labels2.push(time);
-                dataRealTime2.datasets[0].data.push(element.v);
-                myChart2.update();
-            };
-        });
+    try{
+        let checkId = document.getElementById(idMachine+'realTimeChart');
+        if(checkId != null){
+            if (data.rpi == idMachine){
+                sensor = data.rpi + typeSensor;
+                data.data.forEach(function(element){
+                    if (element.id == sensor){
+                        time = (new Date(Number(data.time))).toLocaleTimeString();
+                        //let dateTime = new Date((data.time)*1000);
+                        //let time = dateTime.getHours()+":"+dateTime.getMinutes()+":"+dateTime.getSeconds()
+                        labels2.push(time);
+                        dataRealTime2.datasets[0].data.push(element.v);
+                        myChart2.update();
+                    };
+                });
+            }
+        }
     }
-
+    catch{
+        console.log("error draw chart")
+    }
 }
 
 // called when a message arrives
