@@ -1,5 +1,5 @@
 from flask import session, request, render_template, url_for, redirect, jsonify
-from biogas import app
+from __init__ import app
 from model import *
 from  processDataChart import getDataByIdDaily, getDataByIdMonthly
 from datetime import datetime
@@ -91,9 +91,9 @@ def chart():
             if data['sensor'][0:3] == 'ele':
                 result = electrical.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
             elif data['sensor'][0:3] == 'env':
-                result = environment.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
+                result = environment.query.filter(environment.idMachine_id == data['idMachine']).filter(environment.time > data['start']).filter(environment.time < data['end']).all()
             elif data['sensor'][0:3] == 'ope':
-                result = environment.query.filter(electrical.idMachine_id == data['idMachine']).filter(electrical.time > data['start']).filter(electrical.time < data['end']).all()
+                result = operation.query.filter(operation.idMachine_id == data['idMachine']).filter(operation.time > data['start']).filter(operation.time < data['end']).all()
             jsonData = {}
             for object in result:
                 dictObject = object.__dict__
@@ -118,7 +118,7 @@ def adminPerson(idMachine):
     try:
         if session['userName'] == 'admin':
             userData = user.query.filter_by(idMachine=idMachine).first()
-            listSensor=['eles','eleva','elevb','elevc','elevna','elevab','elevbc','elevca','elevla','eleia','eleib','eleic','eleiav','elepwa','elepwb','elepwc','elepwt','elepfa','elepfb','elepfc','elepft','elef','eleewh','leevah','eletop','ethdva','ethdvb','ethdvc','ethdia','ethdib','ethdic',
+            listSensor=['eles','eleva','elevb','elevc','elevna','elevab','elevbc','elevca','elevla','eleia','eleib','eleic','eleiav','elepwa','elepwb','elepwc','elepwt','elepfa','elepfb','elepfc','elepft','elef','eleewh','eleevah','eletop','elethdva','elethdvb','elethdvc','elethdia','elethdib','elethdic',
                         'envtw','envpo','envo2','envh2s',
                         'opete','opetb','opepidsp','opepidout','opevpb','opepb','opevsfb']
             return render_template('adminPerson.html', user = userData, listSensor= listSensor)

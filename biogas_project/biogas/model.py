@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, String, Column, Boolean, ForeignKey, Float, BigInteger
 from sqlalchemy.orm import relationship
-from biogas import db
+from __init__ import db
 
 
 

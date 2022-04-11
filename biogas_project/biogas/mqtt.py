@@ -1,6 +1,6 @@
 from paho.mqtt import client as mqtt_client
 import json
-from biogas import db
+from __init__ import db
 from model import *
 
 #infor mqtt broker
