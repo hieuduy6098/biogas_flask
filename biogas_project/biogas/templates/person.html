@@ -86,9 +86,10 @@
           <div class="row row1">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                    <label for="selectMonthPower">Chọn tháng:</label>
-                    <input type="month" id="selectMonthPower" name="selectMonthPower">
-                    <button class="btn btn-primary btn-sm" id="reloadPower">Tải lại</button>
+                    <label for="selectMonthPower">Chọn ngày:</label>
+                    <input type="date" id="selectMonthPower" name="selectMonthPower">
+                    <button class="btn btn-primary btn-sm" id="reloadHourlyPower">Giờ</button>
+                    <button class="btn btn-primary btn-sm" id="reloadDailyPower">Ngày</button>
                     <canvas id="{{ user.idMachine }}Power"></canvas>
                     <script type="text/javascript">
                         const labels3 = {{ timeDataChartPower }};
@@ -96,7 +97,7 @@
                         const dataRealTime3 = {
                             labels: labels3,
                             datasets: [{
-                                label: "Công suất theo ngày",
+                                label: "Công suất theo giờ",
                                 backgroundColor: 'rgb(77, 93, 255)',
                                 borderColor: 'rgb(77, 93, 255)',
                                 data: {{ valueDataChartPower }},
@@ -119,7 +120,7 @@
                                         display: true,
                                         title: {
                                             display: true,
-                                            text: 'Ngày'
+                                            text: 'Giờ'
                                         }
                                     },
                                 }

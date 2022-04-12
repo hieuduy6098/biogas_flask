@@ -474,7 +474,7 @@
                 <label for="listSensorHistory">Chọn cảm biến:</label>
                 <select class="form-control" id="listSensorHistory" name="sensor">
                     {% for i in listSensor %}
-                    <option>{{ i }}</option>
+                    <option value="{{ i }}">{{ listSensor[i] }} ({{ i }})</option>
                     {% endfor %}
                 </select><br>
                 <label for="startTime">Thời gian bắt đầu:</label>
@@ -489,7 +489,7 @@
                     const dataRealTime1 = {
                         labels: labels1,
                         datasets: [{
-                            label: "eles",
+                            label: "tốc độ (eles)",
                             backgroundColor: 'rgb(255, 0, 0)',
                             borderColor: 'rgb(255, 0, 0)',
                             data: [],
@@ -517,7 +517,7 @@
                 <label for="listSensorRealTime">Chọn cảm biến:</label>
                 <select class="form-control" id="listSensorRealTime" name="sensor">
                     {% for i in listSensor %}
-                    <option>{{ i }}</option>
+                    <option value="{{ i }}">{{ listSensor[i] }} ({{ i }})</option>
                     {% endfor %}
                 </select>
                 <br>
@@ -529,7 +529,7 @@
                     const dataRealTime2 = {
                         labels: labels2,
                         datasets: [{
-                            label: "eles",
+                            label: "tốc độ (eles)",
                             backgroundColor: 'rgb(255, 0, 0)',
                             borderColor: 'rgb(255, 0, 0)',
                             data: [],

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $('#historySubmit').click(function(){
+        dataRealTime1.datasets[0].label = $('#listSensorHistory option:selected').text();
         $.ajax({
             url: '/chart',
             type: 'POST',

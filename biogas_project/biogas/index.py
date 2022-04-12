@@ -1,12 +1,12 @@
 from flask import session, request, render_template, url_for, redirect, jsonify
 from __init__ import app
 from model import *
-from  processDataChart import getDataByIdDaily, getDataByIdMonthly
-from datetime import datetime
+from  processDataChart import getDataByIdDaily, getDataByIdMonthly, getDataByIdHourly
+from datetime import datetime, timedelta
 from sqlalchemy.inspection import inspect
 
 app.secret_key='asdsdfsdfs13sdf_df%&'
-
+app.permanent_session_lifetime = timedelta(days=1)
 
 # login
 @app.route('/login', methods=['POST', 'GET'])
@@ -17,6 +17,7 @@ def login():
         if user.query.filter_by(userName=userNamePost).all():
             if user.query.filter_by(passWord=passWordPost).all():
                 if userNamePost == 'admin':
+                    session.permanent = True
                     userData = user.query.filter_by(passWord=passWordPost).all()
                     session['userName'] = request.form['user']
                     session['idMachine'] = userData[0].idMachine
@@ -42,8 +43,9 @@ def person(idMachine):
     try:
         if idMachine in session['idMachine']:
             nowMonth = datetime.now().month
+            nowDay = datetime.now().day
             userData = user.query.filter_by(idMachine=idMachine).first()
-            timeDataChartPower, valueDataChartPower = getDataByIdDaily(idMachine, 'elepwt', nowMonth)
+            timeDataChartPower, valueDataChartPower = getDataByIdHourly(idMachine, 'elepwt', nowDay)
             timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(idMachine, 'eleewh', nowMonth)
 
             return render_template('person.html', user=userData,
@@ -72,8 +74,15 @@ def chartPerson():
                     'value': valueDataChartEnergy,
                 }
                 return jsonify(jsonData)
-            elif data['typeMessage']=='reloadPower':
+            elif data['typeMessage']=='reloadDailyPower':
                 timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(data['idMachine'], data['typeChart'], data['month'])
+                jsonData = {
+                    'time': timeDataChartEnergy,
+                    'value': valueDataChartEnergy,
+                }
+                return jsonify(jsonData)
+            elif data['typeMessage']=='reloadHourlyPower':
+                timeDataChartEnergy, valueDataChartEnergy = getDataByIdHourly(data['idMachine'], data['typeChart'], data['day'])
                 jsonData = {
                     'time': timeDataChartEnergy,
                     'value': valueDataChartEnergy,
@@ -118,9 +127,13 @@ def adminPerson(idMachine):
     try:
         if session['userName'] == 'admin':
             userData = user.query.filter_by(idMachine=idMachine).first()
-            listSensor=['eles','eleva','elevb','elevc','elevna','elevab','elevbc','elevca','elevla','eleia','eleib','eleic','eleiav','elepwa','elepwb','elepwc','elepwt','elepfa','elepfb','elepfc','elepft','elef','eleewh','eleevah','eletop','elethdva','elethdvb','elethdvc','elethdia','elethdib','elethdic',
-                        'envtw','envpo','envo2','envh2s',
-                        'opete','opetb','opepidsp','opepidout','opevpb','opepb','opevsfb']
+            listSensor={'eles':'tốc độ','eleva':'điện áp pha a','elevb':'điện áp pha b','elevc':'điện áp pha c','elevna':'điện áp dây ab','elevab':'điện áp dây bc','elevbc':'điện áp dây ca',
+                        'elevca':'điện áp pha tb','elevla':'điện áp dây tb','eleia':'dòng pha a','eleib':'dòng pha b','eleic':'dòng pha c', 'eleiav':'dòng pha tb','elepwa':'công suất pha a',
+                        'elepwb':'công suất pha b','elepwc':'công suất pha c','elepwt':'công suất pha tb', 'elepfa':'hệ số công suất pha a','elepfb':'hệ số công suất pha a',
+                        'elepfc':'hệ số công suất pha c','elepft':'hệ số công suất pha tb','elef':'tần số','eleewh':'điện năng', 'eleevah':'năng lượng', 'eletop':'tg vận hành',
+                        'elethdva':'THD_Van/Vab','elethdvb':'THD_Vbn/Vbc','elethdvc':'THD_Vcn/Vca','elethdia':'THD_Ia','elethdib':'THD_Ib','elethdic':'THD_Ic',
+                        'envtw':'nhiệt độ nước','envpo':'áp suất dầu', 'envo2':'nồng độ O2', 'envh2s':'nồng độ H2S',
+                        'opepidsp':'Tốc độ đặt','opepidout':'Tốc độ đầu ra pid','opevpb':'Góc mở van biogas', 'opepb':'Áp suất tank biogas', 'opevsfb':'Tốc độ phản hồi'}
             return render_template('adminPerson.html', user = userData, listSensor= listSensor)
     except:
         return redirect(url_for('login'))
