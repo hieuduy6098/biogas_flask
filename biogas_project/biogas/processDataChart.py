@@ -1,6 +1,6 @@
 from model import *
 import pandas as pd
-from datetime import datetime
+
 
 def getDataByIdHourly(idMachine, idSensor, day):
     electricalDataList = electrical.query.filter_by(idMachine_id=idMachine).all()
@@ -18,6 +18,7 @@ def getDataByIdHourly(idMachine, idSensor, day):
     table.sort_values(by='timestamp', inplace=True)
     table.drop_duplicates(subset='timestamp', inplace=True)
     table['timestamp'] //= 1000
+    table['timestamp'] += 3600*7
     table['datetime'] = pd.to_datetime(table['timestamp'], unit='s')
     table['day'] = table['datetime'].dt.day
     table['hour'] = table['datetime'].dt.hour
@@ -59,6 +60,7 @@ def getDataByIdDaily(idMachine, idSensor, month):
     table.sort_values(by='timestamp', inplace=True)
     table.drop_duplicates(subset='timestamp', inplace=True)
     table['timestamp'] //= 1000
+    table['timestamp'] += 3600 * 7
     table['datetime'] = pd.to_datetime(table['timestamp'], unit='s')
     table['date'] = table['datetime'].dt.date
     table['month'] = table['datetime'].dt.month
@@ -103,6 +105,7 @@ def getDataByIdMonthly(idMachine, idSensor, year):
     table.sort_values(by='timestamp', inplace=True)
     table.drop_duplicates(subset='timestamp', inplace=True)
     table['timestamp'] //= 1000
+    table['timestamp'] += 3600 * 7
     table['datetime'] = pd.to_datetime(table['timestamp'], unit='s')
     table['year'] = table['datetime'].dt.year
     table['month'] = table['datetime'].dt.month
@@ -130,7 +133,7 @@ def getDataByIdMonthly(idMachine, idSensor, year):
 
 
 if __name__ == '__main__':
-    a, b =getDataByIdHourly("g13", 'eleewh', 11)
+    a, b =getDataByIdMonthly("g14", 'eleewh', 2022)
     #a, b = getDataByIdMonthly("g13", 'eleewh', 2022)
     # getEnergyByIdDaily()
     print(a)

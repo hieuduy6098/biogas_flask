@@ -1,7 +1,7 @@
 from flask import session, request, render_template, url_for, redirect, jsonify
 from __init__ import app
 from model import *
-from  processDataChart import getDataByIdDaily, getDataByIdMonthly, getDataByIdHourly
+from  processDataChart import getDataByIdDaily, getDataByIdMonthly, getDataByIdHourly, getEnergyByIdDaily
 from datetime import datetime, timedelta
 from sqlalchemy.inspection import inspect
 
@@ -46,7 +46,7 @@ def person(idMachine):
             nowDay = datetime.now().day
             userData = user.query.filter_by(idMachine=idMachine).first()
             timeDataChartPower, valueDataChartPower = getDataByIdHourly(idMachine, 'elepwt', nowDay)
-            timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(idMachine, 'eleewh', nowMonth)
+            timeDataChartEnergy, valueDataChartEnergy = getEnergyByIdDaily(idMachine, 'eleewh', nowMonth)
 
             return render_template('person.html', user=userData,
                                    timeDataChartPower=timeDataChartPower,valueDataChartPower=valueDataChartPower,
@@ -61,7 +61,7 @@ def chartPerson():
         if request.method == "POST":
             data = request.get_json()
             if data['typeMessage']=='dailyEnergy':
-                timeDataChartEnergy, valueDataChartEnergy = getDataByIdDaily(data['idMachine'], data['typeChart'], data['month'])
+                timeDataChartEnergy, valueDataChartEnergy = getEnergyByIdDaily(data['idMachine'], data['typeChart'], data['month'])
                 jsonData = {
                     'time': timeDataChartEnergy,
                     'value': valueDataChartEnergy,
@@ -139,4 +139,4 @@ def adminPerson(idMachine):
         return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(port=5000,debug=False)

@@ -4,7 +4,7 @@ from __init__ import db
 from model import *
 
 #infor mqtt broker
-broker = '27.71.227.145'
+broker = '27.71.227.1'
 port = 1883
 topic = "sensor_data"
 client_id = 'publicDcs1'
